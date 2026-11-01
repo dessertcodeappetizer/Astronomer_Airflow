@@ -22,7 +22,7 @@ Your Astro project contains the following files and folders:
 a. Architectural Diagram
 
 
-![Airflow Pipeline Architecture Graph](image-2.png)
+![Airflow Pipeline Architecture Graph](image.png)
 
 b. Runtime execution sequence
 
