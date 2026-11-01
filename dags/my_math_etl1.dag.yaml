@@ -1,0 +1,15 @@
+dag_id: my_math_etl1
+schedule: "@daily"
+
+steps:
+  my_math_etl:
+    blueprint: my_math_etl_blueprint
+    my_number: 23
+    my_name: "Kathryn"
+
+  my_second_math_etl:
+    blueprint: my_math_etl_blueprint
+    my_number: 19
+    my_name: "Dominik"
+    depends_on:
+      - my_math_etl

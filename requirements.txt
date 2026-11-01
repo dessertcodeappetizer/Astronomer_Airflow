@@ -1,0 +1,2 @@
+# Add Python packages here, one per line. Pin versions where possible.
+airflow-blueprint>=0.2.0
