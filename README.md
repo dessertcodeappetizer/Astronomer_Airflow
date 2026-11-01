@@ -20,9 +20,12 @@ Your Astro project contains the following files and folders:
 # Flow
 
 a. Architectural Diagram
+
+
 ![Airflow Pipeline Architecture Graph](image-2.png)
 
 b. Runtime execution sequence
+
   1. Airflow discovers loader.py
     Airflow imports the file from its dags/ directory.
 
