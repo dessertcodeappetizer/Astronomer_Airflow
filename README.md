@@ -17,6 +17,42 @@ Your Astro project contains the following files and folders:
 - plugins: Add custom or community plugins for your project to this file. It is empty by default.
 - airflow_settings.yaml: Use this local-only file to specify Airflow Connections, Variables, and Pools instead of entering them in the Airflow UI as you develop DAGs in this project.
 
+# Flow
+
+a. Architectural Diagram
+![Airflow Pipeline Architecture Graph](image-2.png)
+
+b. Runtime execution sequence
+  1. Airflow discovers loader.py
+    Airflow imports the file from its dags/ directory.
+
+  2. build_all_airflow_dags() executes
+    The Blueprint builder starts discovering DAG definitions and templates.
+
+  3. YAML file is loaded
+    It reads my_math_pipeline.dag.yaml and finds the math step.
+
+  4. Blueprint is resolved
+    It finds MyMathETLBlueprint using the Blueprint name my_math_etl_blueprint.
+
+  5. Configuration is created and validated
+    Conceptually, the framework does something like:
+    config = MyMathETLConfig(    my_number=5,    my_name="Ankur")
+
+  6. Blueprint instance is created
+    Conceptually:
+    blueprint = MyMathETLBlueprint(...)
+
+  7. Render method is called
+    task_group = blueprint.render(config)
+    This creates your three operators and their dependencies.
+
+  8. DAG is assembled and registered
+    The resulting TaskGroup is incorporated into my_math_pipeline.
+
+  9. Airflow executes the DAG
+    When the scheduled DAG run starts, the tasks execute in order.
+
 # Deploy Your Project Locally
 
 1. Start Airflow on your local machine by running 'astro dev start'.
@@ -42,4 +78,4 @@ If you have an Astronomer account, pushing code to a Deployment on Astronomer is
 
 # Contact
 
-The Astronomer CLI is maintained with love by the Astronomer team. To report a bug or suggest a change, reach out to our support.
+It's me Ankur, Email: aa4goal@gmail.com. To report a bug or suggest a change, reach out for my support.
