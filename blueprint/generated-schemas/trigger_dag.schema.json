@@ -1,0 +1,105 @@
+{
+  "description": "Configuration for TriggerDagRunOperator.",
+  "properties": {
+    "dag_id": {
+      "description": "The dag_id of the DAG to trigger.",
+      "title": "Dag Id",
+      "type": "string"
+    },
+    "conf": {
+      "additionalProperties": {
+        "type": "string"
+      },
+      "description": "Configuration for the triggered DAG.",
+      "title": "Conf",
+      "type": "object"
+    },
+    "wait_for_completion": {
+      "default": false,
+      "description": "Whether to wait for the triggered DAG to complete.",
+      "title": "Wait For Completion",
+      "type": "boolean"
+    },
+    "poke_interval": {
+      "default": 60,
+      "description": "Interval in seconds to check the status of the triggered DAG.",
+      "minimum": 5,
+      "title": "Poke Interval",
+      "type": "integer"
+    },
+    "allowed_states": {
+      "description": "List of allowed states for the triggered DAG.",
+      "items": {
+        "type": "string"
+      },
+      "title": "Allowed States",
+      "type": "array"
+    },
+    "failed_states": {
+      "description": "List of failed states for the triggered DAG.",
+      "items": {
+        "type": "string"
+      },
+      "title": "Failed States",
+      "type": "array"
+    },
+    "fail_when_dag_is_paused": {
+      "default": false,
+      "description": "Whether to fail the task if the triggered DAG is paused.",
+      "title": "Fail When Dag Is Paused",
+      "type": "boolean"
+    },
+    "reset_dag_run": {
+      "default": false,
+      "description": "Whether to reset the triggered DAG run if it already exists.",
+      "title": "Reset Dag Run",
+      "type": "boolean"
+    },
+    "blueprint": {
+      "type": "string",
+      "const": "trigger_dag",
+      "description": "The blueprint template to use"
+    },
+    "version": {
+      "type": "integer",
+      "const": 1,
+      "description": "The blueprint version"
+    },
+    "depends_on": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Steps that must complete before this step runs",
+      "default": []
+    },
+    "trigger_rule": {
+      "type": "string",
+      "enum": [
+        "all_done",
+        "all_done_min_one_success",
+        "all_done_setup_success",
+        "all_failed",
+        "all_skipped",
+        "all_success",
+        "always",
+        "none_failed",
+        "none_failed_min_one_success",
+        "none_skipped",
+        "one_done",
+        "one_failed",
+        "one_success"
+      ],
+      "description": "Trigger rule for this step (default: all_success)"
+    }
+  },
+  "required": [
+    "blueprint",
+    "version",
+    "dag_id"
+  ],
+  "title": "trigger_dag",
+  "type": "object",
+  "templateType": "blueprint",
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}

@@ -1,0 +1,15 @@
+dag_id: math_orchestrator
+schedule: null
+
+steps:
+  trigger_first:
+    blueprint: trigger_dag
+    dag_id: my_math_etl
+    wait_for_completion: true
+
+  trigger_second:
+    blueprint: trigger_dag
+    dag_id: my_math_etl1
+    wait_for_completion: true
+    depends_on:
+      - trigger_first

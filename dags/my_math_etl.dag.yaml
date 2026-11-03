@@ -1,5 +1,5 @@
 dag_id: my_math_etl
-schedule: "@daily"
+schedule: null
 
 steps:
   my_math_etl:
