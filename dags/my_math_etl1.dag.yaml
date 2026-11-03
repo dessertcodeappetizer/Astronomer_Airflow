@@ -2,7 +2,7 @@ dag_id: my_math_etl1
 schedule: null
 
 steps:
-  my_math_etl:
+  my_first_math_etl:
     blueprint: my_math_etl_blueprint
     my_number: 23
     my_name: "Kathryn"
@@ -12,4 +12,4 @@ steps:
     my_number: 19
     my_name: "Dominik"
     depends_on:
-      - my_math_etl
+      - my_first_math_etl

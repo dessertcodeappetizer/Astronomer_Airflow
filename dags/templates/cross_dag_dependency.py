@@ -6,11 +6,11 @@ class TriggerDagRunOperatorConfig(BaseModel):
     """Configuration for TriggerDagRunOperator."""
 
     dag_id: str = Field(description="The dag_id of the DAG to trigger.")
-    conf: dict[str, str] = Field(ConfigDict(default_factory=dict), description="Configuration for the triggered DAG.")
+    conf: dict[str, str] = Field(default_factory=dict, description="Configuration for the triggered DAG.")
     wait_for_completion: bool = Field(False, description="Whether to wait for the triggered DAG to complete.")
-    poke_interval: int = Field(default=60, ge=5, description="Interval in seconds to check the status of the triggered DAG.")
-    allowed_states: list[str] = Field(ConfigDict(default_factory=lambda: ['success']), description="List of allowed states for the triggered DAG.")
-    failed_states: list[str] = Field(ConfigDict(default_factory=lambda: ['failed', 'skipped']), description="List of failed states for the triggered DAG.")
+    poke_interval: int = Field(default=10, ge=5, description="Interval in seconds to check the status of the triggered DAG.")
+    allowed_states: list[str] = Field(default_factory=lambda: ['success'], description="List of allowed states for the triggered DAG.")
+    failed_states: list[str] = Field(default_factory=lambda: ['failed'], description="List of failed states for the triggered DAG.")
     fail_when_dag_is_paused: bool = Field(default=False, description="Whether to fail the task if the triggered DAG is paused.")
     reset_dag_run: bool = Field(default=False, description="Whether to reset the triggered DAG run if it already exists.")
     
