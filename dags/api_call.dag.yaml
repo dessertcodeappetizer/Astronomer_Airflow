@@ -1,0 +1,9 @@
+dag_id: api_call_dag
+schedule: null
+
+steps:
+  api_info:
+    step_id: api_info
+    blueprint: api_call
+    url: https://api.rootnet.in/covid19-in/stats/latest
+    method: GET
