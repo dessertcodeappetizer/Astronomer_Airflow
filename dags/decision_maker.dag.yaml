@@ -1,0 +1,19 @@
+dag_id: conditional_workflow
+schedule: null
+
+steps:
+  decision:
+    blueprint: decision_maker
+    number: 24
+    even_task_id: task_b
+    odd_task_id: task_c
+
+  task_b:
+    blueprint: process_even
+    depends_on:
+      - decision
+
+  task_c:
+    blueprint: process_odd
+    depends_on:
+      - decision
